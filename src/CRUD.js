@@ -15,12 +15,27 @@ const empData = [
 
 const CRUD = () => {
 
+  //-----Confirmation Box activities
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  //-----Add new form
+  const [name, setName] = useState('')
+  const [age, setAge] = useState('')
+  const [isActive, setIsActive] = useState(0)
+
+  //-----Edit existing data
+  const [editId, setEditId] = useState('')
+  const [editName, setEditName] = useState('')
+  const [editAge, setEditAge] = useState('')
+  const [editIsActive, setEditIsActive] = useState(0)
+
+  //-----State of the Array data (`useState` is for storing & updating data inside the component. )
   const [data, setData] = useState([]);
 
+  //------Each and every (app needs to fetch data from a server when the page loads)
+  //------`useEffect` is for running side effects like fetching data, updating the title, or setting timers.  
     useEffect(() => {
         setData(empData);
     }, [])
@@ -51,6 +66,8 @@ const CRUD = () => {
                 type="text"
                 className="form-control"
                 placeholder="Enter Name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
               />
             </Col>
             <Col>
@@ -58,10 +75,17 @@ const CRUD = () => {
                 type="text"
                 className="form-control"
                 placeholder="Enter Age"
+                value={age}
+                onChange={(e) => setAge(e.target.value)}
               />
             </Col>
             <Col>
-              <input type="checkbox" />
+              <input
+                type="checkbox"
+                checked={isActive === 1 ? true : false}
+                onChange={(e) => setIsActive(e)}
+                value={isActive}
+              />
               <label style={{ marginLeft: "2px" }}>IsActive</label>
             </Col>
             <Col>
@@ -127,6 +151,8 @@ const CRUD = () => {
                   type="text"
                   className="form-control"
                   placeholder="Enter Name"
+                  value={editName}
+                  onChange={(e) => setEditName(e.target.value)}
                 />
               </Col>
               <Col>
@@ -134,13 +160,20 @@ const CRUD = () => {
                   type="text"
                   className="form-control"
                   placeholder="Enter Age"
+                  value={editAge}
+                  onChange={(e) => setEditAge(e.target.value)}
                 />
               </Col>
               <Col>
-                <input type="checkbox" />
+                <input
+                  type="checkbox"
+                  checked={editIsActive === 1 ? true : false}
+                  onChange={(e) => setEditIsActive(e)}
+                  value={editIsActive}
+                />
                 <label style={{ marginLeft: "2px" }}>IsActive</label>
               </Col>
-            </Row>
+              </Row>
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={handleClose}>
