@@ -14,7 +14,15 @@ const CRUD = () => {
 
     useEffect(() => {
         setData(empData);
-    }, []);
+    }, [])
+
+    const handleEdit = (id) =>{
+      alert(id);
+    }
+
+    const handleDelete = (id) =>{
+      alert(id);
+    }    
 
     return (
         <Fragment>
@@ -39,8 +47,8 @@ const CRUD = () => {
                                 <td>{item.age}</td>
                                 <td>{item.isActive}</td>
                                 <td colSpan={2}>
-                                    <button className="btn btn-primary">Edit</button>
-                                    <button className="btn btn-danger">Remove</button>
+                                    <button className="btn btn-primary" onClick={() => handleEdit(item.id)} >Edit</button> &nbsp;
+                                    <button className="btn btn-danger" onClick={() => handleDelete(item.id)}>Remove</button>
                                 </td>
                             </tr>
                         ))
